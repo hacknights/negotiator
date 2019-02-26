@@ -62,6 +62,15 @@ func (n NegotiatorFunc) InternalServerError(err error) {
 func (n NegotiatorFunc) Unauthorized(err string) {
 	n.UnauthorizedError(fmt.Errorf(err))
 }
+
 func (n NegotiatorFunc) UnauthorizedError(err error) {
 	n(nil, http.StatusUnauthorized, err)
+}
+
+func (n NegotiatorFunc) BadRequest(err string) {
+	n.BadRequestError(fmt.Errorf(err))
+}
+
+func (n NegotiatorFunc) BadRequestError(err error) {
+	n(nil, http.StatusBadRequest, err)
 }
